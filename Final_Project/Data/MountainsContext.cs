@@ -9,6 +9,7 @@ namespace Final_Project.Data
 {
     public class MountainsContext : DbContext
     {
+        //COLTON DALTON
         public MountainsContext(DbContextOptions<MountainsContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder builder)

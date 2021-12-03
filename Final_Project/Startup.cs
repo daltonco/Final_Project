@@ -1,4 +1,5 @@
 using Final_Project.Data;
+using Final_Project.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,7 @@ namespace Final_Project
             services.AddControllers();
             services.AddDbContext<MountainsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MountainsContext")));
+            services.AddScoped<IMountainsContextDAO, MountainsContextDAO>();
             services.AddSwaggerDocument();
         }
 

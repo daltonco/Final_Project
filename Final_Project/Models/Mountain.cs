@@ -7,6 +7,7 @@ namespace Final_Project.Models
 {
     public class Mountain
     {
+        //COLTON DALTON
         public int Id { get; set; }
 
         public string Name { get; set; }

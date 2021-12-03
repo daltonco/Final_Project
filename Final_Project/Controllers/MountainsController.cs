@@ -1,4 +1,5 @@
 ﻿using Final_Project.Data;
+using Final_Project.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,12 +12,13 @@ namespace Final_Project.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MountainsController : ControllerBase
+    public class MountainsController : ControllerBase 
     {
+        //COLTON DALTON
         private readonly ILogger<MountainsController> _logger;
-        private readonly MountainsContext _context;
+        private readonly IMountainsContextDAO _context;
 
-        public MountainsController(ILogger<MountainsController> logger, MountainsContext context)
+        public MountainsController(ILogger<MountainsController> logger, IMountainsContextDAO context)
         {
             _logger = logger;
             _context = context;
@@ -25,7 +27,38 @@ namespace Final_Project.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.TallestMountains.ToList());
+            return Ok(_context.GetAllMountains());
         }
+
+        [HttpGet("id")]
+        public IActionResult GetById(int id)
+        {
+            var mountain = _context.GetMountainById(id);
+            if(mountain == null)
+            {
+                return NotFound(id);
+            }
+            return Ok(_context.GetMountainById(id));
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteById(int id)
+        {
+            var mountain = _context.RemoveMountainById(id);
+            if (mountain == null)
+            {
+                return NotFound(id);
+            }
+            if (string.IsNullOrEmpty(mountain.Name)) 
+            {
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+            return Ok();
+
+        }
+
+        //post
+        //put
+        //delete
     }
 }
