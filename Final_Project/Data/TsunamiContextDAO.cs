@@ -17,14 +17,14 @@ namespace Final_Project.Data
 
         public int? Add(Tsunami tsunami)
         {
-            var tsunamis = _context.TallestTsunamis.Where(x => x.Element.Equals(tsunami.Element) && x.Type.Equals(tsunami.Type)).FirstOrDefault();
+            var tsunamis = _context.TallestTsunamisss.Where(x => x.Element.Equals(tsunami.Element) && x.Type.Equals(tsunami.Type)).FirstOrDefault();
 
             if (tsunamis != null)
                 return null;
 
             try
             {
-                _context.TallestTsunamis.Add(tsunami);
+                _context.TallestTsunamisss.Add(tsunami);
                 _context.SaveChanges();
                 return 1;
             }
@@ -37,12 +37,12 @@ namespace Final_Project.Data
 
         public List<Tsunami> GetAllTsunamis()
         {
-            return _context.TallestTsunamis.ToList();
+            return _context.TallestTsunamisss.ToList();
         }
 
         public Tsunami GetTsunamiById(int id)
         {
-            return _context.TallestTsunamis.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return _context.TallestTsunamisss.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public int? RemoveTsunamiById(int id)
@@ -51,7 +51,7 @@ namespace Final_Project.Data
             if (tsunami == null) return null;
             try
             {
-                _context.TallestTsunamis.Remove((Tsunami)tsunami);
+                _context.TallestTsunamisss.Remove((Tsunami)tsunami);
                 _context.SaveChanges();
                 return 1;
             }
@@ -75,7 +75,7 @@ namespace Final_Project.Data
 
             try
             {
-                _context.TallestTsunamis.Update((Tsunami)tsunamiToUpdate);
+                _context.TallestTsunamisss.Update((Tsunami)tsunamiToUpdate);
                 _context.SaveChanges();
                 return 1;
             }

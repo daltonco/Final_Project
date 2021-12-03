@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Project.Migrations
 {
     [DbContext(typeof(TallestTsunamisContext))]
-    [Migration("20211203012403_Initial")]
-    partial class Initial
+    [Migration("20211203202039_Tsunamis5")]
+    partial class Tsunamis5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,7 @@ namespace Final_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TallestTsunamis");
+                    b.ToTable("TallestTsunamisss");
 
                     b.HasData(
                         new

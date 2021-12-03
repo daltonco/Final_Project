@@ -24,6 +24,6 @@ namespace Final_Project.Data
                 );
         }
 
-        public DbSet<Tsunami> TallestTsunamis { get; set; }
+        public DbSet<Tsunami> TallestTsunamisss { get; set; }
     }
 }
