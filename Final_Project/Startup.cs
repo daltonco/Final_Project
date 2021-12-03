@@ -29,9 +29,7 @@ namespace Final_Project
         {
             services.AddControllers();
 
-            services.AddDbContext<MountainsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MountainsContext")));
-            services.AddScoped<IMountainsContextDAO, MountainsContextDAO>();
+            
      
             services.AddDbContext<TallestTsunamisContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("TallestTsunamisContext")));
