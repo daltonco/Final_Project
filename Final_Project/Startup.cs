@@ -1,4 +1,7 @@
 using Final_Project.Data;
+
+using Final_Project.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Final_Project
 {
     public class Startup
@@ -21,21 +23,33 @@ namespace Final_Project
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<MountainsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MountainsContext")));
+            services.AddScoped<IMountainsContextDAO, MountainsContextDAO>();
+     
+            services.AddDbContext<TallestTsunamisContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("TallestTsunamisContext")));
+
             services.AddSwaggerDocument();
+
             services.AddDbContext<StudentsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("StudentsContext")));
             services.AddScoped<IStudentsContextDAO, StudentsContextDAO>();
+          services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StudentsContext context)
+
+      
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2)
+
+
         {
 
             if (env.IsDevelopment())
@@ -44,21 +58,17 @@ namespace Final_Project
             }
 
             context.Database.Migrate();
-
+            context2.Database.Migrate();
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }
