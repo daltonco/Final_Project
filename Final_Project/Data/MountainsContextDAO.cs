@@ -17,14 +17,14 @@ namespace Final_Project.Data
 
         public int? Add(Mountain mountain)
         {
-            var mountainToBeAdded = _context.TallestMountains.Where(x => x.Name.Equals(mountain.Name)).FirstOrDefault();
+            var mountainToBeAdded = _context.TallestMountains2.Where(x => x.Name.Equals(mountain.Name)).FirstOrDefault();
             if(mountainToBeAdded != null)
             {
                 return null;
             }
             try
             {
-                _context.TallestMountains.Add(mountain);
+                _context.TallestMountains2.Add(mountain);
                 _context.SaveChanges();
                 return 1;
             }
@@ -36,12 +36,12 @@ namespace Final_Project.Data
 
         public List<Mountain> GetAllMountains()
         {
-            return _context.TallestMountains.ToList();
+            return _context.TallestMountains2.ToList();
         }
 
         public Mountain GetMountainById(int id)
         {
-            return _context.TallestMountains.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return _context.TallestMountains2.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public int? RemoveMountainById(int id)
@@ -50,7 +50,7 @@ namespace Final_Project.Data
             if (mountain == null) return null;
             try
             {
-                _context.TallestMountains.Remove(mountain);
+                _context.TallestMountains2.Remove(mountain);
                 _context.SaveChanges();
                 return 1;
             }
@@ -74,7 +74,7 @@ namespace Final_Project.Data
             mountainToUpdate.HeightInFeet = mountain.HeightInFeet;
             try
             {
-                _context.TallestMountains.Update(mountainToUpdate);
+                _context.TallestMountains2.Update(mountainToUpdate);
                 _context.SaveChanges();
                 return 1;
             }

@@ -42,7 +42,7 @@ namespace Final_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TallestMountains");
+                    b.ToTable("TallestMountains2");
 
                     b.HasData(
                         new

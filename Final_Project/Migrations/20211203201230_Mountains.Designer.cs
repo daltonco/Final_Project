@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Project.Migrations
 {
     [DbContext(typeof(MountainsContext))]
-    [Migration("20211202013224_Initial")]
-    partial class Initial
+    [Migration("20211203201230_Mountains")]
+    partial class Mountains
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,7 @@ namespace Final_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TallestMountains");
+                    b.ToTable("TallestMountains2");
 
                     b.HasData(
                         new

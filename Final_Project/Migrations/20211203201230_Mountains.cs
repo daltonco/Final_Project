@@ -2,12 +2,12 @@
 
 namespace Final_Project.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Mountains : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TallestMountains",
+                name: "TallestMountains2",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,11 +20,11 @@ namespace Final_Project.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TallestMountains", x => x.Id);
+                    table.PrimaryKey("PK_TallestMountains2", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
-                table: "TallestMountains",
+                table: "TallestMountains2",
                 columns: new[] { "Id", "Country", "HeightInFeet", "Name", "Parent", "Range" },
                 values: new object[,]
                 {
@@ -39,7 +39,7 @@ namespace Final_Project.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TallestMountains");
+                name: "TallestMountains2");
         }
     }
 }

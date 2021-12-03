@@ -23,6 +23,6 @@ namespace Final_Project.Data
                 );
         }
 
-        public DbSet<Mountain> TallestMountains { get; set; }
+        public DbSet<Mountain> TallestMountains2 { get; set; }
     }
 }
