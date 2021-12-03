@@ -21,7 +21,7 @@ namespace Final_Project.Data
     );
         }
 
-        public DbSet<Teams> BestTeams { get; set; }
+        public DbSet<Teams> BestTeamsTwo { get; set; }
     }
 }
     

@@ -17,13 +17,13 @@ namespace Final_Project.Data
 
         public int? Add(Teams team)
         {
-            var teams = _context.BestTeams.Where(x => x.Name.Equals(team.Name)).FirstOrDefault();
+            var teams = _context.BestTeamsTwo.Where(x => x.Name.Equals(team.Name)).FirstOrDefault();
 
             if (teams != null)
                 return null;
             try
             {
-                _context.BestTeams.Add(team);
+                _context.BestTeamsTwo.Add(team);
                 _context.SaveChanges();
                 return 1;
             }
@@ -35,12 +35,12 @@ namespace Final_Project.Data
 
         public List<Teams> GetAllTeams()
         {
-            return _context.BestTeams.ToList();
+            return _context.BestTeamsTwo.ToList();
         }
 
         public Teams GetTeamById(int id)
         {
-            return _context.BestTeams.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return _context.BestTeamsTwo.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public int? RemoveTeamById(int id)
@@ -49,7 +49,7 @@ namespace Final_Project.Data
             if (team == null) return null;
             try
             {
-                _context.BestTeams.Remove(team);
+                _context.BestTeamsTwo.Remove(team);
                 _context.SaveChanges();
                 return 1;
             }
@@ -74,7 +74,7 @@ namespace Final_Project.Data
 
             try
             {
-                _context.BestTeams.Update(teamToUpdate);
+                _context.BestTeamsTwo.Update(teamToUpdate);
                 _context.SaveChanges();
                 return 1;
             }

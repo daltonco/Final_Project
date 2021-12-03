@@ -2,12 +2,12 @@
 
 namespace Final_Project.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Sportsss : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BestTeams",
+                name: "BestTeamsTwo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,11 +20,11 @@ namespace Final_Project.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BestTeams", x => x.Id);
+                    table.PrimaryKey("PK_BestTeamsTwo", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
-                table: "BestTeams",
+                table: "BestTeamsTwo",
                 columns: new[] { "Id", "Country", "League", "Name", "Sport", "Titles" },
                 values: new object[,]
                 {
@@ -38,7 +38,7 @@ namespace Final_Project.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BestTeams");
+                name: "BestTeamsTwo");
         }
     }
 }

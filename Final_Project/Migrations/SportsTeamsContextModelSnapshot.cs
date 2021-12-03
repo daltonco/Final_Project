@@ -18,7 +18,7 @@ namespace Final_Project.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Final_Project.Models.Teams", b =>
+            modelBuilder.Entity("Final_Project.Data.Teams", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace Final_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BestTeams");
+                    b.ToTable("BestTeamsTwo");
 
                     b.HasData(
                         new
