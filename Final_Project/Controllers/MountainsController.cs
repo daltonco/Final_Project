@@ -1,5 +1,6 @@
 ﻿using Final_Project.Data;
 using Final_Project.Interfaces;
+using Final_Project.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -44,17 +45,48 @@ namespace Final_Project.Controllers
         [HttpDelete]
         public IActionResult DeleteById(int id)
         {
-            var mountain = _context.RemoveMountainById(id);
-            if (mountain == null)
+            var result = _context.RemoveMountainById(id);
+            if (result == null)
             {
                 return NotFound(id);
             }
-            if (string.IsNullOrEmpty(mountain.Name)) 
+            if (result == 0) 
             {
                 return StatusCode(500, "An error occurred while processing your request.");
             }
             return Ok();
 
+        }
+
+        [HttpPut]
+        public IActionResult Put(Mountain mountain)
+        {
+            var result = _context.UpdateMountain(mountain);
+            if (result == null)
+            {
+                return NotFound(mountain.Id);
+            }
+            if (result == 0)
+            {
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+            return Ok();
+
+        }
+
+        [HttpPost]
+        public IActionResult Post(Mountain mountain)
+        {
+            var result = _context.Add(mountain);
+            if(result == null)
+            {
+                return StatusCode(500, "Mountain already exists.");
+            }
+            if(result == 0)
+            {
+                return StatusCode(500, "An error occurred processing your request.");
+            }
+            return Ok();
         }
 
         //post

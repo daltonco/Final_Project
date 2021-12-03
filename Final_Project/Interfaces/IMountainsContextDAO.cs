@@ -10,6 +10,8 @@ namespace Final_Project.Interfaces
     {
         List<Mountain> GetAllMountains();
         Mountain GetMountainById(int id);
-        Mountain RemoveMountainById(int id);
+        int? RemoveMountainById(int id);
+        int? UpdateMountain(Mountain mountain);
+        int? Add(Mountain mountain);
     }
 }
