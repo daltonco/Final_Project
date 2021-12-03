@@ -22,6 +22,6 @@ namespace Final_Project.Data
                 );
         }
 
-        public DbSet<Students> Student { get; set; }
+        public DbSet<Students> StudentInfo { get; set; }
     }
 }

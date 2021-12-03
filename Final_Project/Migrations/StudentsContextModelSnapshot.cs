@@ -42,7 +42,7 @@ namespace Final_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("StudentInfo");
 
                     b.HasData(
                         new

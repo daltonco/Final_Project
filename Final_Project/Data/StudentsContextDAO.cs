@@ -18,14 +18,14 @@ namespace Final_Project.Data
 
         public int? Add(Students students)
         {
-            var student= _context.Student.Where(x => x.FirstName.Equals(students.FirstName) && x.LastName.Equals(students.LastName)).FirstOrDefault();
+            var student= _context.StudentInfo.Where(x => x.FirstName.Equals(students.FirstName) && x.LastName.Equals(students.LastName)).FirstOrDefault();
 
             if (student != null)
                 return null;
 
             try 
             {
-                _context.Student.Add(students);
+                _context.StudentInfo.Add(students);
                 _context.SaveChanges();
                 return 1;
             }
@@ -38,12 +38,12 @@ namespace Final_Project.Data
 
         public List<Students> GetAllStudent()
         {
-            return _context.Student.ToList();
+            return _context.StudentInfo.ToList();
         }
 
         public Students GetStudentById(int id)
         {
-            return _context.Student.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return _context.StudentInfo.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public int? RemoveStudentById(int id)
@@ -52,7 +52,7 @@ namespace Final_Project.Data
             if (student == null) return null;
             try
             {
-                _context.Student.Remove(student);
+                _context.StudentInfo.Remove(student);
                 _context.SaveChanges();
                 return 1;
             }
@@ -78,7 +78,7 @@ namespace Final_Project.Data
 
             try
             {
-                _context.Student.Update(studentToUpdate);
+                _context.StudentInfo.Update(studentToUpdate);
                 _context.SaveChanges();
                 return 1;
             }

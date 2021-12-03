@@ -2,12 +2,12 @@
 
 namespace Final_Project.Migrations
 {
-    public partial class Initial : Migration
+    public partial class People : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "StudentInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,11 +20,11 @@ namespace Final_Project.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.Id);
+                    table.PrimaryKey("PK_StudentInfo", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
-                table: "Student",
+                table: "StudentInfo",
                 columns: new[] { "Id", "Birthday", "FirstName", "LastName", "Major", "Year" },
                 values: new object[,]
                 {
@@ -38,7 +38,7 @@ namespace Final_Project.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "StudentInfo");
         }
     }
 }
