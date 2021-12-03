@@ -33,21 +33,24 @@ namespace Final_Project
      
             services.AddDbContext<TallestTsunamisContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("TallestTsunamisContext")));
+            services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
 
-            services.AddSwaggerDocument();
 
             services.AddDbContext<StudentsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("StudentsContext")));
             services.AddScoped<IStudentsContextDAO, StudentsContextDAO>();
-          services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
+
+            services.AddDbContext<MountainsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MountainsContext")));
+            services.AddScoped<IMountainsContextDAO, MountainsContextDAO>();
+
+            services.AddSwaggerDocument();
         }
 
 
       
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2)
-
-
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2, MountainsContext context3)
         {
 
             if (env.IsDevelopment())
@@ -57,6 +60,8 @@ namespace Final_Project
 
             context.Database.Migrate();
             context2.Database.Migrate();
+            context3.Database.Migrate();
+
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
