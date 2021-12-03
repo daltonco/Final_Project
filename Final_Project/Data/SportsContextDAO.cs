@@ -53,7 +53,7 @@ namespace Final_Project.Data
                 _context.SaveChanges();
                 return 1;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return 0;
             }
