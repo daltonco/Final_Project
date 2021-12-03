@@ -1,7 +1,5 @@
 using Final_Project.Data;
-
 using Final_Project.Interfaces;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 namespace Final_Project
 {
     public class Startup
@@ -29,8 +28,6 @@ namespace Final_Project
         {
             services.AddControllers();
 
-            
-     
             services.AddDbContext<TallestTsunamisContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("TallestTsunamisContext")));
             services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
@@ -43,6 +40,10 @@ namespace Final_Project
             services.AddDbContext<MountainsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MountainsContext")));
             services.AddScoped<IMountainsContextDAO, MountainsContextDAO>();
+      
+            services.AddDbContext<SportsTeamsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SportsTeamsContext")));
+            services.AddScoped<ISportsContextDAO, SportsContextDAO>();
 
             services.AddSwaggerDocument();
         }
@@ -50,17 +51,20 @@ namespace Final_Project
 
       
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2, MountainsContext context3)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2, MountainsContext context3, SportsTeamsContext context4)
+
         {
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            context.Database.Migrate();
 
             context.Database.Migrate();
             context2.Database.Migrate();
             context3.Database.Migrate();
+            context4.Database.Migrate();
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
