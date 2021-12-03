@@ -15,6 +15,24 @@ namespace Final_Project.Data
             _context = context;
         }
 
+        public int? Add(Teams team)
+        {
+            var teams = _context.BestTeams.Where(x => x.Name.Equals(team.Name)).FirstOrDefault();
+
+            if (teams != null)
+                return null;
+            try
+            {
+                _context.BestTeams.Add(team);
+                _context.SaveChanges();
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
         public List<Teams> GetAllTeams()
         {
             return _context.BestTeams.ToList();

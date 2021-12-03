@@ -68,5 +68,18 @@ namespace Final_Project.Controllers
             return Ok();
 
         }
+        [HttpPost]
+        public IActionResult Post (Teams team)
+        {
+            var result = _context.Add(team);
+
+            if (result == null)
+                return StatusCode(500, "Team Already Exists");
+
+            if (result == 0)
+                return StatusCode(500, "An error occurred");
+
+            return Ok();
+        }
     }
     }
