@@ -1,5 +1,7 @@
 using Final_Project.Data;
+
 using Final_Project.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,14 +37,18 @@ namespace Final_Project
                 options.UseSqlServer(Configuration.GetConnectionString("TallestTsunamisContext")));
 
             services.AddSwaggerDocument();
-            services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
+
+            services.AddDbContext<StudentsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("StudentsContext")));
+            services.AddScoped<IStudentsContextDAO, StudentsContextDAO>();
+          services.AddScoped<ITsunamiContextDAO, TsunamiContextDAO>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MountainsContext context)
+      
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TallestTsunamisContext context, StudentsContext context2)
+
 
         {
 
@@ -52,7 +58,7 @@ namespace Final_Project
             }
 
             context.Database.Migrate();
-
+            context2.Database.Migrate();
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
