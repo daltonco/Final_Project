@@ -29,10 +29,11 @@ namespace Final_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerDocument();
+            
             services.AddDbContext<SportsTeamsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SportsTeamsContext")));
             services.AddScoped<ISportsContextDAO, SportsContextDAO>();
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

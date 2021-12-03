@@ -17,7 +17,7 @@ namespace Final_Project.Controllers
         private readonly ILogger<SportsTeamsController> _logger;
         private readonly ISportsContextDAO _context;
 
-        public SportsTeamsController(ILogger<SportsTeamsController> logger, SportsContextDAO context)
+        public SportsTeamsController(ILogger<SportsTeamsController> logger, ISportsContextDAO context)
         {
             _logger = logger;
             _context = context;
