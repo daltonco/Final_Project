@@ -38,5 +38,35 @@ namespace Final_Project.Controllers
 
             return Ok(_context.GetTeamById(Id));
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int Id) {
+
+            var result = _context.RemoveTeamById(Id);
+
+            if (result == null)
+                return NotFound(Id);
+
+            if (result == 0)
+                return StatusCode(500, "An error occured while processing your code");
+
+            return Ok();
+
+        }
+
+        [HttpPut]
+        public IActionResult Put(Teams team)
+        {
+            var result = _context.UpdateTeam(team);
+
+            if (result == null)
+                return NotFound(team.Id);
+
+            if (result == 0)
+                return StatusCode(500, "An error occured while processing your code");
+
+            return Ok();
+
+        }
     }
-}
+    }

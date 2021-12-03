@@ -24,5 +24,47 @@ namespace Final_Project.Data
         {
             return _context.BestTeams.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
+
+        public int? RemoveTeamById(int id)
+        {
+            var team = this.GetTeamById(id);
+            if (team == null) return null;
+            try
+            {
+                _context.BestTeams.Remove(team);
+                _context.SaveChanges();
+                return 1;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public int? UpdateTeam(Teams team)
+        {
+            var teamToUpdate = this.GetTeamById(team.Id);
+            if (teamToUpdate == null)
+                return null;
+
+            teamToUpdate.Name = team.Name;
+            teamToUpdate.Sport = team.Sport;
+            teamToUpdate.Country = team.Country;
+            teamToUpdate.League = team.League;
+            teamToUpdate.Titles = team.Titles;
+
+
+            try
+            {
+                _context.BestTeams.Update(teamToUpdate);
+                _context.SaveChanges();
+                return 1;
+            }
+            catch(Exception)
+            {
+                return 0;
+            }
+            
+        }
     }
 }

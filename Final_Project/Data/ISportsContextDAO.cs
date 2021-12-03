@@ -11,5 +11,7 @@ namespace Final_Project.Data
     {
         List<Teams> GetAllTeams();
         Teams GetTeamById(int id);
+        int? RemoveTeamById(int id);
+        int? UpdateTeam(Teams team);
     }
 }
